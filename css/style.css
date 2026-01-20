@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 1.1em;
+}
+
+.game-info div {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.game-info span {
+    font-weight: bold;
+    color: #FFE66D;
+}
+
+.game-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+#ludoCanvas {
+    border: 3px solid #333;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    flex: 1;
+    max-width: 800px;
+}
+
+/* If board pattern image exists, let canvas show it via CSS fallback */
+#ludoCanvas.fallback-bg {
+    background-image: url('../assets/images/board-pattern.svg');
+    background-size: cover;
+    background-position: center;
+}
+
+.sidebar {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-roll {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-roll:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-roll:active {
+    transform: translateY(0);
+}
+
+.btn-reset {
+    background: #FF6B6B;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-reset:hover {
+    background: #FF5252;
+    transform: translateY(-2px);
+}
+
+.player-stats {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.player-stats h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.player-info {
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+}
+
+.player-info:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+.pieces-home {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.instructions {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.instructions h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.instructions ul {
+    list-style: none;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.instructions li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.instructions li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .game-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex: 0 0 auto;
+    }
+
+    #ludoCanvas {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .game-info div {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .game-wrapper {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .sidebar {
+        flex: 0 0 auto;
+    }
+
+    .player-stats,
+    .instructions {
+        font-size: 0.85em;
+    }
+}
+
+/* Scrollbar styling */
+.player-stats::-webkit-scrollbar {
+    width: 6px;
+}
+
+.player-stats::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.player-stats::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.player-stats::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}

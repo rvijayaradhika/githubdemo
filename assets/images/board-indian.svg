@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500">
+  <defs>
+    <style>
+      .line{stroke:#333;stroke-width:6}
+    </style>
+  </defs>
+  <rect width="1500" height="1500" fill="#f8f9fa"/>
+  <!-- Outer grid 15x15 -->
+  <g id="grid">
+    <rect x="150" y="150" width="1200" height="1200" fill="#ffffff" stroke="#333" stroke-width="8"/>
+    <!-- 15x15 cells each 80px -->
+    <g stroke="#ddd" stroke-width="2">
+      <!-- vertical lines -->
+      <g>
+        <!-- will be rendered by repeated rectangles -->
+      </g>
+    </g>
+  </g>
+  <!-- Colored home squares (6x6 cells) -->
+  <!-- Top-left: Red -->
+  <g>
+    <rect x="150" y="150" width="480" height="480" fill="#FF6B6B" stroke="#b33" stroke-width="6"/>
+  </g>
+  <!-- Top-right: Teal -->
+  <g>
+    <rect x="870" y="150" width="480" height="480" fill="#4ECDC4" stroke="#2b8f87" stroke-width="6"/>
+  </g>
+  <!-- Bottom-left: Yellow -->
+  <g>
+    <rect x="150" y="870" width="480" height="480" fill="#FFE66D" stroke="#c9a800" stroke-width="6"/>
+  </g>
+  <!-- Bottom-right: Mint -->
+  <g>
+    <rect x="870" y="870" width="480" height="480" fill="#95E1D3" stroke="#5aa78e" stroke-width="6"/>
+  </g>
+  <!-- Centre home (star) -->
+  <g transform="translate(750,750)">
+    <circle r="140" fill="#f0f0f0" stroke="#333" stroke-width="6"/>
+    <polygon points="0,-110 35,-25 110,-25 50,20 70,95 0,50 -70,95 -50,20 -110,-25 -35,-25" fill="#fff" stroke="#333" stroke-width="4"/>
+  </g>
+  <!-- overlay simple track markers along path for visual effect -->
+  <g stroke="#bdbdbd" fill="#e0e0e0">
+    <!-- top row across between corners -->
+    <!-- We'll draw some squares to emulate track positions -->
+  </g>
+</svg>

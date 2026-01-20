@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo - 4 Player Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Ludo</h1>
+            <div class="game-info">
+                <div class="current-player">Current Player: <span id="currentPlayer">Player 1</span></div>
+                <div class="dice-roll">Dice: <span id="diceValue">0</span> <img id="diceImg" src="assets/images/dice-1.svg" alt="dice" style="width:36px;height:36px;vertical-align:middle;margin-left:8px;display:inline-block;"/></div>
+                <div class="turn-status" id="turnStatus">Roll dice or move piece</div>
+            </div>
+        </div>
+
+        <div class="game-wrapper">
+            <canvas id="ludoCanvas" width="800" height="800"></canvas>
+            
+            <div class="sidebar">
+                <div class="controls">
+                    <button id="rollBtn" class="btn btn-roll">Roll Dice</button>
+                    <button id="resetBtn" class="btn btn-reset">Reset Game</button>
+                </div>
+
+                <div class="player-stats">
+                    <h3>Players</h3>
+                    <div class="player-info" id="player1" style="color: #FF6B6B;">
+                        <div class="player-name">🔴 Player 1</div>
+                        <div class="pieces-home">Pieces at home: 4</div>
+                    </div>
+                    <div class="player-info" id="player2" style="color: #4ECDC4;">
+                        <div class="player-name">🔵 Player 2</div>
+                        <div class="pieces-home">Pieces at home: 4</div>
+                    </div>
+                    <div class="player-info" id="player3" style="color: #FFE66D;">
+                        <div class="player-name">🟡 Player 3</div>
+                        <div class="pieces-home">Pieces at home: 4</div>
+                    </div>
+                    <div class="player-info" id="player4" style="color: #95E1D3;">
+                        <div class="player-name">🟢 Player 4</div>
+                        <div class="pieces-home">Pieces at home: 4</div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>How to Play</h3>
+                    <ul>
+                        <li>Roll dice to move pieces</li>
+                        <li>Click on a piece to select it</li>
+                        <li>First to reach home wins</li>
+                        <li>Safe spaces prevent capture</li>
+                        <li>Get 6 to move out of start</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="debugConsole" style="position:fixed;left:12px;bottom:12px;right:12px;max-height:160px;overflow:auto;background:rgba(0,0,0,0.75);color:#fff;padding:8px;border-radius:8px;font-family:monospace;font-size:12px;display:none;z-index:9999"></div>
+    <script>
+        window.debugLog = function(msg) {
+            const el = document.getElementById('debugConsole');
+            if (!el) return;
+            el.style.display = 'block';
+            el.textContent += msg + '\n';
+        };
+        window.onerror = function(message, source, lineno, colno, error) {
+            window.debugLog(`ERROR: ${message} (${source}:${lineno}:${colno})`);
+        };
+        const _log = console.log.bind(console);
+        console.log = function() { _log.apply(console, arguments); window.debugLog('LOG: ' + Array.from(arguments).join(' ')); };
+        const _warn = console.warn.bind(console);
+        console.warn = function() { _warn.apply(console, arguments); window.debugLog('WARN: ' + Array.from(arguments).join(' ')); };
+        const _err = console.error.bind(console);
+        console.error = function() { _err.apply(console, arguments); window.debugLog('ERR: ' + Array.from(arguments).join(' ')); };
+    </script>
+
+    <script src="js/utils.js"></script>
+    <script src="js/assets.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
